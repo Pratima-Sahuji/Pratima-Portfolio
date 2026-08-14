@@ -1,0 +1,133 @@
+.terminalSection {
+  width: 100%;
+  max-width: 850px;
+  margin: 4rem auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 5;
+}
+
+.terminalBox {
+  width: 100%;
+  background: #000;
+  border: 4px solid #111;
+  box-shadow: 10px 10px 0px var(--primary); /* Deep orange brutalist shadow */
+  cursor: text;
+  border-radius: 4px; /* Slight rounding for Mac OS window look */
+  overflow: hidden;
+}
+
+.terminalHeader {
+  background: #111;
+  border-bottom: 2px solid #222;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid #000;
+}
+
+.dotRed { background: #ff5f56; }
+.dotYellow { background: #ffbd2e; }
+.dotGreen { background: #27c93f; }
+
+.headerTitle {
+  color: #888;
+  margin-left: 1rem;
+  text-transform: uppercase;
+  font-family: var(--font-mono), 'Courier New', Courier, monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.headerHint {
+  margin-left: auto;
+  font-size: 10px;
+  color: #555;
+  font-family: var(--font-mono), monospace;
+}
+
+@media (max-width: 600px) {
+  .headerHint { display: none; }
+  .headerTitle { margin-left: 0.5rem; font-size: 9px; }
+}
+
+.terminalBody {
+  padding: 1.5rem 2rem;
+  font-family: var(--font-mono), 'Courier New', Courier, monospace;
+  font-size: 14px;
+  line-height: 1.8;
+  overflow-y: auto;
+  min-height: 320px;
+  max-height: 480px;
+  color: #ccc;
+  background: #000;
+}
+
+.terminalBody::-webkit-scrollbar {
+  width: 8px;
+}
+.terminalBody::-webkit-scrollbar-track {
+  background: #111;
+}
+.terminalBody::-webkit-scrollbar-thumb {
+  background: #333;
+}
+
+.historyBlock {
+  margin-bottom: 0.25rem;
+}
+
+.prompt {
+  color: var(--primary);
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+  font-weight: 600;
+}
+
+.cmdText {
+  color: #fff;
+}
+
+.spacer {
+  color: transparent;
+  user-select: none;
+  font-size: 0.5rem;
+}
+
+.inputRow {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.inputField {
+  flex: 1;
+  background: transparent;
+  color: #fff;
+  outline: none;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  caret-color: transparent; /* We use custom blinking cursor if empty, but if typing we can let the native one show or hide it entirely */
+}
+
+/* Hide native cursor completely to rely on our custom one? Actually, we only show custom when empty. */
+.inputField:focus {
+  caret-color: var(--primary);
+}
+
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 16px;
+  background: var(--primary);
+  margin-left: 2px;
+  vertical-align: middle;
+}

@@ -1,0 +1,443 @@
+.processContainer {
+  position: relative;
+  width: 100%;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  border-right: 1px dashed #777;
+}
+
+.topLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  border-top: 1px dashed #777;
+  z-index: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  position: relative;
+  z-index: 1;
+}
+
+.column {
+  position: relative;
+  padding: 0 1rem 3rem 1rem;
+  border-left: 1px dashed #777;
+  border-bottom: 1px dashed #777;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Remove generic hover to rely on color schemes */
+.openColumn {
+  /* Handled by specific color schemes */
+}
+
+.numberBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  background: var(--background);
+  padding: 0.2rem 0.5rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.openColumn .numberBox {
+  background-color: var(--background);
+}
+
+.dot {
+  color: var(--primary);
+  font-weight: 800;
+  margin-right: 2px;
+}
+
+.title {
+  margin-top: 4rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  line-height: 1.5;
+  margin-bottom: 3rem;
+  max-width: 90%;
+  letter-spacing: 0.5px;
+  color: var(--foreground);
+  min-height: 4.5rem; /* Ensures alignment across columns */
+  display: flex;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.stack {
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  margin-bottom: 2rem;
+  text-align: left;
+  letter-spacing: 0.5px;
+  line-height: 1.6;
+  white-space: normal;
+  min-height: 4.5rem; /* Ensures alignment across columns */
+}
+
+.iconWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3rem;
+  height: 60px;
+}
+
+.iconBox {
+  background: var(--background);
+  padding: 0 1rem;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  margin-left: 0;
+}
+
+.iconBoxOpen {
+  background-color: var(--background);
+}
+
+.connectingLine {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  width: 100%;
+  height: 1px;
+  border-top: 1px dashed var(--border); /* Light line */
+  z-index: 1;
+}
+
+.oneLine {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.6;
+  text-align: left;
+}
+
+/* Modal Styling */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modalContent {
+  width: 100%;
+  max-width: 650px;
+  max-height: 85vh;
+  background: #fff;
+  border: 4px solid #111;
+  box-shadow: 12px 12px 0px #111;
+  display: flex;
+  flex-direction: column;
+}
+
+.modalHeader {
+  border-bottom: 4px solid #111;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.orangeHeader { background: var(--primary); }
+.orangeHeader .modalTitle { color: #111; }
+
+.whiteHeader { background: #fff; }
+.whiteHeader .modalTitle { color: #111; }
+
+.blackHeader { background: #111; border-bottom: 4px solid #111; }
+.blackHeader .modalTitle { color: #fff; }
+
+.modalTitle {
+  font-family: 'Pixelify Sans', var(--font-mono);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.closeBtn {
+  background: #fff;
+  border: 2px solid #111;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #111;
+  transition: all 0.2s ease;
+}
+
+.closeBtn:hover {
+  background: #111;
+  color: #fff;
+}
+
+.modalBody {
+  padding: 2.5rem 2rem 1.5rem 2rem;
+  background: #fff;
+  overflow-y: auto;
+}
+
+/* Brutalist scrollbar for the modal body */
+.modalBody::-webkit-scrollbar {
+  width: 10px;
+}
+.modalBody::-webkit-scrollbar-track {
+  background: #fafafa;
+  border-left: 1px solid #ddd;
+}
+.modalBody::-webkit-scrollbar-thumb {
+  background: #111;
+}
+
+.modalCategory {
+  background: #111;
+  color: #fff;
+  display: inline-block;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 2rem;
+  font-family: var(--font-mono);
+}
+
+.modalDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+}
+
+.modalParagraph {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #333;
+  font-weight: 500;
+  margin: 0;
+  text-align: left;
+}
+
+.modalStackSection {
+  margin-top: 1rem;
+}
+
+.modalStackTitle {
+  font-size: 0.8rem;
+  color: var(--primary);
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.modalTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 2.5rem;
+}
+
+.modalTag {
+  background: #fafafa;
+  border: 1px solid #ddd;
+  color: #111;
+  font-size: 0.75rem;
+  padding: 0.4rem 0.75rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+}
+
+.modalFooter {
+  display: flex;
+  border-top: 4px solid #111;
+  padding: 1.5rem 2rem;
+  gap: 1.5rem;
+  background: #fff;
+}
+
+.modalActionBtn {
+  flex: 1;
+  padding: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 3px solid #111;
+  transition: all 0.2s ease;
+  letter-spacing: 1px;
+}
+
+.btnBlack {
+  background: #111;
+  color: #fff;
+}
+.btnBlack:hover {
+  background: var(--primary);
+  color: #111;
+}
+
+.btnWhite {
+  background: #fff;
+  color: #111;
+}
+.btnWhite:hover {
+  background: #111;
+  color: #fff;
+}
+
+@media (max-width: 992px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .column {
+    padding-bottom: 4rem;
+    padding-left: 2rem;
+  }
+  .connectingLine {
+    display: none;
+  }
+  .numberBox {
+    left: 0;
+    transform: translate(0, -50%);
+  }
+}
+
+/* Color Scheme Interactions */
+.iconSvg {
+  stroke: var(--primary);
+  transition: stroke 0.3s ease;
+}
+
+/* Orange Scheme */
+.column.orange:hover, .column.orange.openColumn {
+  background-color: var(--primary);
+  color: #111;
+  box-shadow: inset 0 0 0 2px #111; /* Gives it a solid border pop */
+}
+.column.orange:hover .title, .column.orange.openColumn .title {
+  color: #111;
+}
+.column.orange:hover .numberBox, .column.orange.openColumn .numberBox {
+  background-color: var(--primary);
+  color: #111;
+}
+.column.orange:hover .iconBox, .column.orange.openColumn .iconBox {
+  background-color: var(--primary);
+}
+.column.orange:hover .desc, .column.orange.openColumn .desc,
+.column.orange:hover .stack, .column.orange.openColumn .stack,
+.column.orange:hover .oneLine, .column.orange.openColumn .oneLine,
+.column.orange:hover .projectPoint, .column.orange.openColumn .projectPoint {
+  color: #222;
+}
+.column.orange:hover .iconSvg, .column.orange.openColumn .iconSvg {
+  stroke: #111;
+}
+.column.orange:hover .projectPoint::before, .column.orange.openColumn .projectPoint::before {
+  color: #111;
+}
+.column.orange:hover .actionBtn, .column.orange.openColumn .actionBtn {
+  border-color: #111;
+  color: #111;
+}
+.column.orange:hover .actionBtn:hover, .column.orange.openColumn .actionBtn:hover {
+  background-color: #111;
+  color: var(--primary);
+}
+
+/* White Scheme */
+.column.white:hover, .column.white.openColumn {
+  background-color: #fff;
+  color: #111;
+  box-shadow: inset 0 0 0 2px #111;
+}
+.column.white:hover .title, .column.white.openColumn .title {
+  color: #111;
+}
+.column.white:hover .numberBox, .column.white.openColumn .numberBox {
+  background-color: #fff;
+  color: #111;
+}
+.column.white:hover .iconBox, .column.white.openColumn .iconBox {
+  background-color: #fff;
+}
+.column.white:hover .desc, .column.white.openColumn .desc,
+.column.white:hover .stack, .column.white.openColumn .stack,
+.column.white:hover .oneLine, .column.white.openColumn .oneLine,
+.column.white:hover .projectPoint, .column.white.openColumn .projectPoint {
+  color: #333;
+}
+.column.white:hover .actionBtn, .column.white.openColumn .actionBtn {
+  border-color: #111;
+  color: #111;
+}
+
+/* Black Scheme */
+.column.black:hover, .column.black.openColumn {
+  background-color: #111;
+  color: #fff;
+  box-shadow: inset 0 0 0 2px var(--primary);
+}
+.column.black:hover .title, .column.black.openColumn .title {
+  color: #fff;
+}
+.column.black:hover .numberBox, .column.black.openColumn .numberBox {
+  background-color: #111;
+  color: #fff;
+}
+.column.black:hover .iconBox, .column.black.openColumn .iconBox {
+  background-color: #111;
+}
+.column.black:hover .desc, .column.black.openColumn .desc,
+.column.black:hover .stack, .column.black.openColumn .stack,
+.column.black:hover .oneLine, .column.black.openColumn .oneLine {
+  color: #ccc;
+}
+.column.black:hover .projectPoint, .column.black.openColumn .projectPoint {
+  color: #eee;
+}
+.column.black:hover .actionBtn, .column.black.openColumn .actionBtn {
+  border-color: #555;
+  color: #fff;
+}

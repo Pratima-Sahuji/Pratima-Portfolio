@@ -1,0 +1,53 @@
+.wrapper {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -2;
+  overflow: hidden;
+  opacity: 0.15;
+}
+
+.mask {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  /* Fades from transparent at top to the exact beige color at the bottom */
+  background: linear-gradient(to bottom, transparent 0%, rgba(240, 238, 229, 0.8) 50%, rgba(240, 238, 229, 1) 100%);
+}
+
+.scrollContainer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
+  color: #111;
+  width: 250%;
+  user-select: none;
+  font-family: 'Courier New', Courier, monospace;
+  white-space: nowrap;
+  line-height: 1.6;
+  /* Tilted slightly for a cool cinematic feel */
+  transform: rotate(-2deg) scale(1.1);
+  transform-origin: center -10%;
+}
+
+.scrollBlock {
+  animation: scrollLogs 30s linear infinite;
+}
+
+@keyframes scrollLogs {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@media (min-width: 640px) {
+  .scrollContainer {
+    font-size: 11px;
+    width: 100%;
+  }
+}

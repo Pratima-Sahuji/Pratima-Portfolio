@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+.darkSection {
+  background-color: #0a0a0a;
+  color: #fff;
+  position: relative;
+  width: 100%;
+  border-top: 1px dashed #333;
+  overflow: hidden;
+  font-family: var(--font-mono);
+}
+
+.gridBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.gridCol {
+  border-right: 1px dashed #333;
+}
+.gridCol:first-child {
+  border-left: 1px dashed #333;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.borderBottom {
+  border-bottom: 1px dashed #333;
+}
+
+.cell {
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.span3 {
+  grid-column: span 3;
+}
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+.badgeNum {
+  background: var(--primary);
+  color: #111;
+  padding: 0.2rem 0.4rem;
+}
+.badgeText {
+  color: #fff;
+}
+
+/* Top Links */
+.monoText {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+a.monoText:hover {
+  color: #fff;
+}
+.socials {
+  display: flex;
+  gap: 2rem;
+}
+
+/* Middle Row */
+.heroCell {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+.hugeTitle {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(3rem, 6vw, 6rem);
+  font-weight: 500;
+  line-height: 1.05;
+  color: #fff;
+  margin: 0 0 2rem 0;
+  letter-spacing: -0.04em;
+  max-width: 900px;
+}
+.subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  color: #888;
+  max-width: 600px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Bottom Links */
+.footerLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.footerLink {
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+  letter-spacing: 1px;
+}
+.footerLink:hover {
+  color: var(--primary);
+}
+.footerLinkSecondary {
+  color: #888;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Form */
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.formRow {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.inputGroup label {
+  font-size: 0.65rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.inputGroup input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #333;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  padding: 0.5rem 0;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.inputGroup input:focus {
+  border-color: var(--primary);
+}
+
+.submitBtn {
+  background: #fff;
+  color: #111;
+  border: none;
+  padding: 1.25rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 1px;
+}
+.submitBtn:hover {
+  background: var(--primary);
+  color: #111;
+}
+
+/* Bottom Social Row */
+.socialRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2.5rem 0;
+  border-top: 1px solid #333;
+  position: relative;
+  z-index: 1;
+}
+
+.socialIconBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: #fff;
+  color: #111;
+  border: 2px solid #111;
+  box-shadow: 4px 4px 0px var(--primary);
+  transition: all 0.2s ease;
+}
+
+.socialIconBox:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--primary);
+}
+
+@media (max-width: 1024px) {
+  .row, .gridBackground {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .span3 {
+    grid-column: span 2;
+  }
+  .heroCell {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  .hugeTitle {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .row, .gridBackground {
+    grid-template-columns: 1fr;
+  }
+  .span3 {
+    grid-column: span 1;
+  }
+  .heroCell {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  .hugeTitle {
+    font-size: 3rem;
+  }
+}
