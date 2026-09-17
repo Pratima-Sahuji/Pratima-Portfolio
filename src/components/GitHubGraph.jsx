@@ -47,6 +47,7 @@ export default function GitHubGraph() {
   const totalContributions = data?.totalContributions ?? 350;
   const weeks = useMemo(() => data?.weeks || [], [data]);
   const months = useMemo(() => data?.months || [], [data]);
+  const hasWeeks = weeks && weeks.length > 0;
 
   // Compute X coordinate for each month header
   const monthLabels = useMemo(() => {
@@ -178,7 +179,7 @@ export default function GitHubGraph() {
                 </text>
 
                 {/* Contribution days grid */}
-                {loading
+                {!hasWeeks
                   ? Array.from({ length: 53 }).map((_, wIdx) =>
                       Array.from({ length: 7 }).map((_, dIdx) => (
                         <rect
@@ -190,6 +191,9 @@ export default function GitHubGraph() {
                           rx={2}
                           ry={2}
                           fill="#ede8df"
+                          stroke="#ddd7cc"
+                          strokeWidth="0.8"
+                          strokeOpacity={0.6}
                           className="animate-pulse"
                         />
                       ))
